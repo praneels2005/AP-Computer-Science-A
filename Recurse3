@@ -1,0 +1,20 @@
+public class Recurse3 
+{
+	public static double GoldenRatio(double value)
+	   {
+	     if(value == 0)
+	     {
+	       return 1;
+	     }
+	     else
+	     {
+	       return 1 + (1/GoldenRatio(value-1));
+	     }
+	   }
+	public static void main(String[] args) {
+	  
+	   
+	    System.out.println(GoldenRatio(2));
+	  }
+
+}
