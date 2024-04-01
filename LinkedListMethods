@@ -1,0 +1,138 @@
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class LinkedListMethods
+{
+//1. return a newLL a at the end of b
+public static LinkedList<String> append(LinkedList<String> a, LinkedList<String> b)
+{
+	LinkedList<String> LLN = new LinkedList<String>();
+	ListIterator<String> iterator = a.listIterator();
+	while(iterator.hasNext())
+	{
+		LLN.add(iterator.next());
+	}
+	ListIterator<String>iterator2 = b.listIterator();
+	while(iterator2.hasNext())
+	{
+		LLN.add(iterator2.next());
+	}
+	
+	return LLN;
+
+}
+
+//2. return a newLL of alternating values
+public static LinkedList<String>alternateMerge(LinkedList<String> a, LinkedList<String> b)
+{
+	LinkedList<String> LLN = new LinkedList<String>();
+	ListIterator<String> iterator = a.listIterator();
+	ListIterator<String> iterator2 = b.listIterator();
+	
+	while(iterator.hasNext()||iterator2.hasNext())
+	{
+		if(iterator.hasNext())
+		{
+			LLN.add(iterator.next());
+		}
+		if(iterator2.hasNext())
+		{
+			LLN.add(iterator2.next());
+		}
+	}
+	
+	return LLN;
+}
+
+//3. return a newLL of reverse values
+public static LinkedList<String> reverse (LinkedList<String> staff)
+{
+	LinkedList<String> c =new LinkedList<String>();
+	ListIterator<String> iterator = staff.listIterator();
+	while(iterator.hasNext())
+	{
+		iterator.next();
+	}
+	while(iterator.hasPrevious())
+	{
+		c.add(iterator.previous());
+	}
+	
+	return c;
+}
+
+//4. return a newLL with a duplicate of each item (HTJW will become HHTTJJWW)
+public static LinkedList<String> duplicate (LinkedList<String> staff)
+{
+	LinkedList<String> c =new LinkedList<String>();
+	ListIterator<String> iterator = staff.listIterator();
+	ListIterator<String> iterator2 = staff.listIterator();
+	while(iterator.hasNext())
+	{
+		c.add(iterator.next());
+		c.add(iterator2.next());
+	}
+	
+	return c;
+}
+//5. return a newLL with a repeat of the list at the end (HTJW will become HTJWHTJW)
+public static LinkedList<String> repeat (LinkedList<String> staff)
+{
+	LinkedList<String> c =new LinkedList<String>();
+	ListIterator<String> iterator = staff.listIterator();
+	while(iterator.hasNext())
+	{
+		c.add(iterator.next());
+	}
+	ListIterator<String>iterator2 = staff.listIterator();
+	while(iterator2.hasNext())
+	{
+		c.add(iterator2.next());
+	}
+	
+	return c;
+	
+	
+}
+
+//6. Write a method that will search for and delete an inputted string
+public static void delete (LinkedList<String> staff, String searchFor)
+{
+	ListIterator<String> iterator = staff.listIterator();
+	
+	while(iterator.hasNext())
+	{
+		if(iterator.next().equals(searchFor))
+		{
+			iterator.remove();
+		}
+	}
+}
+
+public static void main(String[]args)
+{
+		
+		LinkedList<String> a = new LinkedList<String>(Arrays.asList("a","b","c"));
+		LinkedList<String> b = new LinkedList<String>(Arrays.asList("d","e","f","g","h"));
+		System.out.println(append(a,b));
+		System.out.println(alternateMerge(a,b));
+
+		System.out.println(reverse(a));
+		System.out.println(duplicate(a));
+		System.out.println(repeat(a));
+		delete(b,"g");
+		System.out.println(b);
+		
+		
+		//[a, b, c, d, e, f, g, h]
+		//[a, d, b, e, c, f, g, h]
+		//[c, b, a]
+		//[a, a, b, b, c, c]
+		//[a, b, c, a, b, c]
+		//[d, e, f, h]
+}
+}
+
+
+
