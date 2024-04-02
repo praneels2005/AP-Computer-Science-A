@@ -1,0 +1,183 @@
+//package myLL;
+
+import java.util.NoSuchElementException;
+
+public class LinkedList<E> implements MyList<E>
+{
+	private ListNode firstNode;
+	
+	//Constructs an empty list
+	public LinkedList()
+	{
+		firstNode = null;
+	}
+	
+	public boolean isEmpty()
+	{
+		if(firstNode == null)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+	public void addFirst(Object o)
+	{
+		firstNode = new ListNode(o, firstNode);
+	}
+	
+	public void addLast(Object o)
+	{
+		if(isEmpty())
+		{
+			firstNode = new ListNode(o,null);
+		}
+		else
+		{
+			ListNode current = firstNode;
+			while(current.getNext() != null)
+			{
+				current = current.getNext();
+			}
+			current.setNext(new ListNode(o,null));
+		}
+	}
+	
+	public Object getLast()
+	{
+		ListNode current = firstNode; 
+		while(current.getNext()!=null)
+		{
+			current=current.getNext();
+		}
+		return current.getValue(); 
+	}
+	
+	public Object removeFirst()
+	{
+		Object val;
+		if(isEmpty())
+		{
+			throw new NoSuchElementException("Can't remove from an empty list");
+		}
+		else
+		{
+			val = firstNode.getValue();
+			firstNode = firstNode.getNext();
+		}
+		return val;
+	}
+	
+	public Object getFirst()
+	{
+		return firstNode.getValue();
+	}
+	
+	public String toString()
+	{
+		String s = " ";
+		ListNode current = firstNode;
+		while(current != null)
+		{
+			s+= current.getValue() + ", ";
+			current = current.getNext();
+		}
+		return s;
+	}
+	
+	public boolean add(Object o)
+	{
+		 
+		addLast(o);
+		return true;
+	}
+	
+	public Object removeLast()
+	{
+		if(isEmpty())
+		{
+			throw new NoSuchElementException("Can't remove from an empty list");
+		}
+		ListNode current = firstNode;
+		ListNode follow = null;
+		while(current.getNext() != null) //at least 2 nodes
+		{
+			follow = current;
+			current = current.getNext();
+		}
+		if(follow ==null)
+		{
+			firstNode = null;
+		}
+		else
+		{
+			follow.setNext(null);
+		}
+		
+		return current.getValue();
+	}
+	
+	public boolean remove(Object o)
+	{
+		if(isEmpty())
+		{
+			return false;
+		}
+	else if(getFirst().equals( o))
+		{
+			removeFirst();
+			return true;
+		}
+		else if(getLast().equals( o))
+		{
+			removeLast();
+			return true;
+		}
+		else
+		{
+		ListNode current = firstNode.getNext();
+		ListNode follow = firstNode;
+		//ListNode follow = firstNode;
+			while(!current.getValue().equals( o) && current.getNext() != null)
+			{
+				follow = current;
+				current = current.getNext();
+			}
+			if(current.getValue().equals( o))
+			{
+				while(current.getNext() != null)
+				{
+					follow.setNext(current.getNext());
+					follow = current;
+					current = current.getNext();
+				}
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		
+	}
+	
+	public int size()
+	{
+		ListNode current = firstNode;
+		int size = 0;
+		while(current != null)
+		{
+			size++;
+			current = current.getNext();
+		}
+		
+		return size;
+	}
+	
+	
+	public void clear()
+	{
+		firstNode = null;
+	}
+}
