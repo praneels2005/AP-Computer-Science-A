@@ -1,0 +1,102 @@
+public class NSidedDie 
+{
+	
+private int numberOfSides;
+
+public NSidedDie()
+{
+
+numberOfSides = 6;
+}
+
+public NSidedDie(int n)
+{
+	numberOfSides = n;
+}
+
+
+/** Returns an integer value between 1 and numberOfSides inclusive
+*/
+public int toss()
+{
+	int random = (int)(Math.random() * numberOfSides + 1);
+	
+	return random;
+}
+
+/** Returns an array of the values obtained by tossing a number die numTosses
+* times.
+* @param die a NSidedDie
+* @param numTosses the number of tosses to be recorded
+* Precondition: numTosses > 0
+* @return an array of numTosses values
+*/
+public static int[] getCubeTosses(NSidedDie die, int numTosses)
+{
+	int []Dice = new int[numTosses];
+	
+	for(int i = 0; i<Dice.length; i++)
+	{
+		Dice[i] = die.toss();
+	}
+	
+	return Dice;
+}
+/** Returns the starting index of a longest run of two or more consecutive * * *
+* repeated values
+* in the array values.
+* @param values an array of integer values representing a series of number cube
+* tosses
+* Precondition: values.length &gt; 0
+* @return the starting index of a run of maximum size;
+* -1 if there is no run
+*/
+public static int getLongestRun(int[] values)
+{
+	int count = 0;
+	int max = 0;
+	int index = -1;
+	for (int i = 0; i < values.length - 1; i++) {
+		if (values[i] == values[i + 1]) {
+			count++;
+		} else {
+			if (count > max) {
+				max = count;
+				index = i - count;
+			}
+			count = 0;
+		}		
+	}
+	return index;
+
+}
+
+
+// Helper method that prints the values in the array
+public static void printRolls( int[] rolls)
+{
+	for(int i = 0; i<rolls.length; i++)
+	{
+		System.out.print(rolls[i] + " ");
+	}
+}
+
+/*
+* Write a tester method that tosses a 4 sided die 20 times. Display the tosses.
+* Print out the index of the longest run.
+*
+* Your output should look something like this
+*
+* [1 2 1 4 4 2 2 4 2 1 3 4 3 4 1 1 1 4 2 3 ]
+* Longest Run starts at index 14
+*/
+public static void main(String[] args) 
+{
+	NSidedDie cube = new NSidedDie(4);
+	
+	printRolls(getCubeTosses(cube,20));
+	System.out.println();
+	System.out.println("Longest Run starts at index " + getLongestRun(getCubeTosses(cube, 2)));
+	
+}
+}
