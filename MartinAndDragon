@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+
+public class MartinAndDragon
+{
+	
+	public static boolean anyOdd(ArrayList<Integer> numbers)
+	{
+		if (numbers.size()==0)
+		{
+			return false;
+		}
+		else if(numbers.get(0)%2 == 1)
+		{
+			return true;
+		}
+		else
+		{
+			numbers.remove(0);
+			return anyOdd(numbers);
+		}
+	}
+	
+	public static boolean find(char lookfor, String lookIn)
+	{
+		String temp;
+		if (lookIn.length() == 0)
+		{
+			return false;
+		}
+		else if(lookIn.charAt(0) == lookfor)
+		{
+			return true;
+		}
+		else
+		{
+			temp = lookIn.substring(1,lookIn.length());
+			return find(lookfor, temp);
+		}
+	}
+	
+	public static void main(String[]args)
+	{
+		ArrayList<String> nums = new ArrayList<String>();
+	}
+
+}
