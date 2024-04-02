@@ -1,0 +1,48 @@
+
+public class ArrayWs1 
+{
+	public static void main(String[]args)
+	{
+		//Create an array of 75 random integers between 1000 and 2000.  
+        //After the array is created search through the list and count the even and odd 	numbers
+		
+		int even = 0;
+		int odd = 0;
+		
+		int []random = new int[75];
+		
+		for(int i = 0; i< random.length; i++)
+		{
+			random[i] = (int)(Math.random() * 999 + 1001);
+		}
+		
+		for(int i = 0; i<random.length; i++)
+		{
+			if(random[i] %2 == 0)
+			{
+				even++;
+			}
+			else
+			{
+				odd++;
+			}
+		}
+		
+		System.out.println("even: " + even + "\nodd: " + odd);
+		
+		
+		int []prime = new int[20];
+		prime[0] = 
+		int i = 1;
+		while(i<20)
+		{
+			for(int n = 1; n<= i; i++)
+			{
+				
+			}
+		}
+		
+		String[] face = {"2", "3", "4", "5", "6", "7"};
+	}
+
+}
