@@ -1,0 +1,182 @@
+package MyArrayList;
+
+public class myArrayList<E> implements MyList<E>
+{
+	private Object[] list;
+	
+	public myArrayList() {
+		list = new Object[0];
+	}
+
+	public int size()
+	{
+		return list.length;
+	}
+	
+	public void add(E o)
+	{
+		Object [] temp = new Object[list.length +1];
+		int x = 0;
+		
+		 //copy all elements to temp array
+		for(Object i: list)
+		{
+			temp[x] = i;
+			x++;
+		}
+		
+		 //add new element at the end
+		temp[list.length] = o;
+		list = temp;
+	}
+	
+	public String toString()
+	{
+		String array = "[";
+		for(int i= 0; i<list.length-1; i++)
+		{
+			array += list[i] + " ";
+		}
+		
+		return array + "]"; 
+	}
+	
+	public void add( int index, E o)
+	{
+		list[index] = o;
+	}
+	
+	public Object get(int index)
+	{
+		return list[index];
+	}
+	
+	public boolean contains(E o)
+	{
+		for(int i = 0; i<list.length -1; i++)
+		{
+			if(list[i].equals(o))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean remove (E o)
+	{
+		Object[]Array = new Object[list.length-1];
+		int pos = 0;
+		
+		for(int i = 0; i<list.length; i++)
+		{
+			if(list[i].equals(o))
+			{
+				if(i == list.length -1)
+				{
+					return true;
+				}
+				else
+				{
+					for(int n = i+1; n<list.length; n++)
+					{
+						Array[pos] = list[n];
+						pos++;
+					}
+					for(int j = 0; j<list.length-1; j++)
+					{
+						list[j] = Array[j];
+					}
+					return true;
+				}
+				
+			}
+			else
+			{
+				Array[pos] = list[i];
+				pos++;
+			}
+		}
+		
+		return false;
+	}
+	
+	public Object set(int index, E o)
+	{
+		Object deleted = list[index];
+		list[index] = o;
+		return deleted;
+	}
+	
+	public Object remove(int index)
+	{
+		Object deleted = list[index];
+        Object[] temp = new Object[list.length - 1];
+
+        for (int i = 0; i < index; i++)
+        {
+            temp[i] = list[i];
+        }
+
+        for (int i = index; i < list.length - 1; i++)
+        {
+            temp[i] = list[i + 1];
+        }
+
+        list = temp;
+        return deleted;
+	}
+	
+	public static void main(String[]args)
+	{
+		 //ArrayList<String> zoo = new ArrayList<String>();
+		myArrayList<String> zoo = new myArrayList<String>();
+		zoo.add( "aardvark");
+		zoo.add("cat");
+		zoo.add( "elephant");
+		zoo.add("emu");
+		zoo.add("gnu");
+		zoo.add("goat");
+
+		zoo.add("hippo");
+		System.out.println(zoo.size());
+		System.out.println(zoo);
+		 System.out.println(zoo.get(3));
+		 System.out.println(zoo.remove("emu"));
+		 System.out.println(zoo);
+		 System.out.println("Size:" + zoo.size());
+		 System.out.println(zoo);
+		 System.out.println(zoo.get(3));
+		 System.out.println("contains cat? " + zoo.contains("cat"));
+		 System.out.println("contains dog? " + zoo.contains("dog"));
+		 System.out.println(zoo.get(3));
+		 System.out.println(zoo.set(0, "donkey"));
+		 System.out.println(zoo);
+		 zoo.remove(2);
+		 System.out.println(zoo);
+		 zoo.add(2, "dog");
+		 zoo.add(5, "parrot");
+		  System.out.println("add() methods and toString()");
+		  System.out.println(zoo);
+		  System.out.println("Get 3:");
+		  System.out.println(zoo.get(3));
+
+		  System.out.println("Remove 2?");
+		  System.out.println(zoo);
+		  System.out.println("Remove cat?");
+		  System.out.println(zoo.remove("cat"));
+		  System.out.println(zoo);
+		  System.out.println("contains elephant?");
+		  System.out.println(zoo.contains("elephant"));
+		 System.out.println("contains llama?");
+		 System.out.println(zoo.contains("llama"));
+		 System.out.println("Set 5,0,3 to donkey");
+		 System.out.println(zoo.set(5, "donkey"));
+		 System.out.println(zoo.set(0, "donkey"));
+		 System.out.println(zoo.set(3, "donkey"));
+		 System.out.println(zoo);
+		
+		
+	}
+}
