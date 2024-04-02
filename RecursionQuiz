@@ -1,0 +1,97 @@
+
+public class RecursionQuiz 
+{
+	//evenSum(1236) returns 8 (2 + 6 = 8)
+	//evenSum(85962) returns 16 (8 + 6 + 2 = 16)
+	//Implement method evenSum. Only a recursive solution will receive credit.
+
+	// precondition: n >= 0
+	public static int evenSum(int n)
+	{ 
+		int sum = 0;
+		if(n < 10)
+		{
+			if(n%2 == 0)
+			{
+				return sum+=n;
+			}
+		}
+		else
+		{
+			if((n%10)%2 == 0)
+			{
+				return sum+=n%10 + evenSum(n/10);
+			}
+			else
+			{
+				return sum+= evenSum(n/10);
+			}
+		}
+		return sum;
+	}
+	
+		public static boolean isPalindrome(String word)
+	    {
+	        if (word.length() == 0 || word.length() == 1)
+	        {
+	            return true;
+	        }
+	        else if (word.charAt(0) == word.charAt(word.length() - 1))
+	        {
+	            return isPalindrome(word.substring(1, word.length() -1));
+	        }
+	        else
+	        {
+	        return false;
+	        }
+	    }
+
+	
+	//Every password must contain a number 
+	//isValid(“adrt5yu”) 🡺 TRUE
+	//isValid(“8975654”) 🡺 TRUE
+	//isValid(“JAVA”) 🡺 FALSE
+	public static boolean isValid(String password) 
+	{
+		if(password.length()==0)
+		{
+			return false;
+		}
+		else
+		{
+			for(int i = 48; i<=57; i++)
+			{
+			if(password.charAt(password.length()-1) == i)
+			{
+				return true;
+			}
+			}
+			return isValid(password.substring(0,password.length()-1));
+		}
+	}
+	
+public static double  goldenRatio(int n) 
+{	
+	if(n==0)
+	{
+		return 1;
+	}
+	else
+	{
+		
+		return 1+1/(goldenRatio(n-1)); 
+	}
+
+}
+
+
+	
+	public static void main(String[]args)
+	{
+		System.out.println(evenSum(85962));
+		System.out.println(isPalindrome("racecar"));
+		System.out.println(isValid("JAVA"));
+		System.out.println(goldenRatio(10));
+	}
+
+}
