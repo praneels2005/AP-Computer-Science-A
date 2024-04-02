@@ -1,0 +1,130 @@
+import java.text.DecimalFormat;
+public class ArrayWs3
+{
+	public static void display( int[] a)
+	{
+		
+		for(int i = 0; i< a.length; i++)
+		{
+			System.out.println(a[i]);
+		}
+	}
+	
+	public static void display2( String[] a)
+	{
+		
+		for(int i = 0; i< a.length; i++)
+		{
+			System.out.println(a[i]);
+		}
+	}
+	
+	// 1. Create an array that contains the first 100 odd positive integers
+	public static int[] oddIntegers() 
+	{
+		int []odd = new int[100];
+		
+		for(int i = 0; i<odd.length; i++)
+		{
+			odd[i] = i* 2 + 1;
+		}
+		
+		return odd;
+	}
+	
+	// 2. An int array []salary contains the integer salary of all employees.
+	// Write a method that calculates the average salary.
+	// Pass the array as a parameter.
+	public static double avgSal(int[] salary)
+	{	
+		double sum = 0;
+		for(int i = 0; i<salary.length; i++)
+		{
+			sum += salary[i];
+		}
+		
+		return sum/salary.length;
+	}
+	
+	// 3. A String array contains last names in alphabetical order.
+	// Create an array []reverse that stores the names in descending order.
+	public static String[] createReverse(String[] name) 
+	{
+		String []reverse = new String[name.length];
+		int n = 0;
+		for(int i = name.length-1; i>=0; i--)
+		{
+			reverse[n] = name[i];
+			n++;
+		}
+		
+		return reverse;
+	}
+	
+	// 4. An int array []number contains integers.
+	// Traverse through the array to create 2 more arrays: []pos and neg[].
+	// No zeros should be in []pos or []neg
+	public static void posNeg(int[] number)
+	{
+		int len1 = 0;
+		int len2 = 0;
+		
+		for(int i = 0; i<number.length; i++)
+		{
+			if(number[i]<0)
+			{
+				len1++;
+			}
+			else if(number[i]>0)
+			{	
+				len2++;
+			}
+		}
+		
+		int []pos = new int[len2];
+		int []neg = new int[len1];
+		
+		int pos1 = 0;
+		int pos2 = 0;
+		
+		for(int i = 0; i<number.length; i++)
+		{
+			if(number[i]<0)
+			{
+				neg[pos1] = number[i];
+				pos1++;
+			}
+			else if(number[i]>0)
+			{	
+				pos[pos2] = number[i];
+				pos2++;
+			}
+		}
+		
+		for(int i = 0; i<pos.length; i++)
+		{
+			System.out.print(pos[i] + " ");
+		}
+		System.out.println();
+		for(int i = 0; i<neg.length; i++)
+		{
+			System.out.print(neg[i] + " ");
+		}
+	}
+	
+	public static void main(String[]args)
+	{
+		int []salary = new int[]{90,90,90};
+		String[]names = new String[] {"Alpha", "Beta", "Carrots", "Delta"};
+		int[]numbers = new int[] {1,2,3,4,5,-1,-2,6,-19,-9};
+		
+		display(oddIntegers());
+		System.out.println();
+		System.out.println(avgSal(salary));
+		System.out.println();
+		display2(createReverse(names));
+		System.out.println();
+		posNeg(numbers);
+	}
+
+}
