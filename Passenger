@@ -1,0 +1,31 @@
+public class Passenger 
+{//This class works as intended. Implementation not shown
+private String name;
+private int miles;
+public Passenger(String nam, int mil)
+{
+	name = nam;
+	miles = mil;
+}
+
+public String getName() 
+{
+	return name;
+}
+
+public void setName(String newName) 
+{
+	name = newName;
+}
+
+public int getMiles()
+{ 
+	return miles;
+	}
+
+public void setMiles(int newMile) 
+{
+	miles = newMile;
+}
+
+}
